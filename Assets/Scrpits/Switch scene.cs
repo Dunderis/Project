@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Switchscene : MonoBehaviour
 {
-    public Scene scene;
+    public string SceneName;
+
+    public bool random;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,21 @@ public class Switchscene : MonoBehaviour
 
     public void SceneChange()
     {
-        SceneManager.LoadScene(scene.buildIndex);
+        if (random)
+        {
+            int num = Random.Range(0, 2);
+            if (num == 0)
+            {
+                SceneManager.LoadScene("Map 1");
+            }
+            else
+            {
+                SceneManager.LoadScene("Map 2");
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneName);
+        }
     }
 }
